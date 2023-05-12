@@ -15,7 +15,6 @@
 
 1. **State Channels** 
      - State channels are off-chain channels between two parties that enable them to conduct multiple transactions without requiring the main blockchain's intervention. They are best suited for high-frequency, low-value transactions, such as micropayments. While state channels provide instant settlement and low fees, they are limited to only two parties, making them less suitable for applications that require multiple parties.
-
 2. **Sidechains** 
     -  Sidechains are independent blockchains that are interoperable with the main blockchain. They allow developers to experiment with new features and functionalities without affecting the main chain's security and performance. However, sidechains are still susceptible to security risks, and transferring assets between sidechains and the main chain can be complex and slow.
 
