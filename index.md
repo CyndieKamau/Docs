@@ -151,7 +151,23 @@ Simply switch to Goerli network, copy wallet address and request for funds;
 Once its successful some GoerliETH will be transferred to your Goerli testnet address;
 
 ![1goerli](https://github.com/CyndieKamau/Docs/assets/63792575/6bb8b737-1dc0-4fd2-8be4-9487b1190c65)
+--------------------------------
 
+SECTION 1 REMAINDER;
+
+Setting up a local development environment
+
+-----------------------------------------------
+
+
+
+
+
+
+
+------------------------------------------------
+SECTION 2
+--------------------------------------
 
 # Understanding Mara's Layer-2 Blockchain
 > Layer 2 is a secondary blockchain network that operates on top of the primary blockchain (Layer 1) to enhance its scalability, security, and speed. It reduces the burden on the main chain by offloading some of the transaction processing to a separate layer, thus increasing the network's overall capacity and efficiency.
