@@ -1,3 +1,11 @@
+---
+title: # MARA Documentation
+layout: template
+filename: index.md
+--- 
+
+
+
 # MARA Documentation
 
 ## 1. Getting Started with Mara Testnet
