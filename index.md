@@ -113,3 +113,44 @@ You can now switch to mara-testnet;
 
 
 
+## 3. REQUESTING FAUCET FUNDS ON MARA
+
+Faucet funds serve a crucial role, especially for beginners. 
+
+Picture faucet funds as a kind of "free samples" in the blockchain universe. 
+
+They provide users with a small amount of cryptocurrency, enabling them to start interacting with blockchain networks without needing to buy or mine the cryptocurrency themselves.
+
+They are important because interacting with blockchains often involves transaction costs, known as "gas fees" in Ethereum and its compatible blockchains. 
+
+By offering a small amount of free cryptocurrency, faucets enable new users to explore the functionalities of a blockchain, understand how transactions work, and get a feel for the system without having to invest their own money.
+
+
+-------
+On the metamask page, ensure you're still on the `mara-testnet` network, then copy the wallet address above.
+
+You'll then go to the [MARA Site](https://mara.caldera.dev/) and click on the `Request faucet funds on Mara rollup` button;
+
+![funds](https://github.com/CyndieKamau/Docs/assets/63792575/89707898-f553-4a7e-ab93-77b367c29118)
+
+
+Paste your wallet address, then click on `Receive Funds` button;
+
+Once its successful you’ll receive MARA tokens;
+
+![200](https://github.com/CyndieKamau/Docs/assets/63792575/256f7315-bb2f-4fd7-ae2d-d03ab3a9026c)
+
+We can now use these tokens to interact with the Mara blockchain, deploy our smart contract etc.
+
+**N.B** With MARA you can also request for **GoerliETH** tokens for interacting with the Ethereum Goerli test network!! 
+
+Simply switch to Goerli network, copy wallet address and request for funds;
+
+![0goerli](https://github.com/CyndieKamau/Docs/assets/63792575/bc2ecfda-ce84-4bab-95eb-3feaca57c397)
+
+Once its successful some GoerliETH will be transferred to your Goerli testnet address;
+
+![1goerli](https://github.com/CyndieKamau/Docs/assets/63792575/6bb8b737-1dc0-4fd2-8be4-9487b1190c65)
+
+
+
