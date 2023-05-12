@@ -1,9 +1,3 @@
----
-title: # MARA Documentation
-filename: index.md
---- 
-
-
 
 # MARA Documentation
 
