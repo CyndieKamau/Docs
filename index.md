@@ -1,6 +1,5 @@
 ---
 title: # MARA Documentation
-layout: template
 filename: index.md
 --- 
 
