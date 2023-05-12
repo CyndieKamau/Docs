@@ -9,7 +9,7 @@
 * **Increased security:** Layer 2 solutions can enhance the security of blockchain networks by reducing the number of transactions that are processed on the main chain, thus reducing the risk of network congestion and potential attacks. Additionally, Layer 2 solutions can implement additional security measures, such as multi-party computation and zero-knowledge proofs.
 * **Flexibility:** Layer 2 solutions can provide greater flexibility to blockchain networks, allowing them to support a wider range of use cases and applications. This can lead to greater innovation and development within the blockchain ecosystem.
 
-# Comparison with other Layer-2 technologies
+## Comparison with other Layer-2 technologies
 
 > There are various Layer-2 technologies available in the market, including state channels, sidechains, plasma, rollups, and more recently, Base and Boba. Here's how Base and Boba compare to some of the other Layer-2 technologies:
 
