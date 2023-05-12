@@ -14,16 +14,16 @@
 > There are various Layer-2 technologies available in the market, including state channels, sidechains, plasma, rollups, and more recently, Base and Boba. Here's how Base and Boba compare to some of the other Layer-2 technologies:
 
 1. **State Channels** 
-  - State channels are off-chain channels between two parties that enable them to conduct multiple transactions without requiring the main blockchain's intervention. They are best suited for high-frequency, low-value transactions, such as micropayments. While state channels provide instant settlement and low fees, they are limited to only two parties, making them less suitable for applications that require multiple parties.
+     - State channels are off-chain channels between two parties that enable them to conduct multiple transactions without requiring the main blockchain's intervention. They are best suited for high-frequency, low-value transactions, such as micropayments. While state channels provide instant settlement and low fees, they are limited to only two parties, making them less suitable for applications that require multiple parties.
 
 2. **Sidechains** 
-  - Sidechains are independent blockchains that are interoperable with the main blockchain. They allow developers to experiment with new features and functionalities without affecting the main chain's security and performance. However, sidechains are still susceptible to security risks, and transferring assets between sidechains and the main chain can be complex and slow.
+    -  Sidechains are independent blockchains that are interoperable with the main blockchain. They allow developers to experiment with new features and functionalities without affecting the main chain's security and performance. However, sidechains are still susceptible to security risks, and transferring assets between sidechains and the main chain can be complex and slow.
 
 3. **Plasma** 
- - Plasma is a Layer-2 scaling solution that enables the creation of child chains, each with their own set of rules and security measures. Plasma is best suited for applications that require complex computations or large amounts of data. However, the setup process for Plasma can be complex, and the child chains may not have the same level of security and decentralization as the main chain.
+    - Plasma is a Layer-2 scaling solution that enables the creation of child chains, each with their own set of rules and security measures. Plasma is best suited for applications that require complex computations or large amounts of data. However, the setup process for Plasma can be complex, and the child chains may not have the same level of security and decentralization as the main chain.
 
 4. **Rollups** 
- - Rollups are Layer-2 solutions that batch transactions off-chain and then submit a single transaction to the main chain. Rollups are best suited for applications that require high scalability and low transaction fees. However, rollups can have longer settlement times than other Layer-2 solutions, and there may be a tradeoff between scalability and decentralization.
+    - Rollups are Layer-2 solutions that batch transactions off-chain and then submit a single transaction to the main chain. Rollups are best suited for applications that require high scalability and low transaction fees. However, rollups can have longer settlement times than other Layer-2 solutions, and there may be a tradeoff between scalability and decentralization.
 
 5. **Base and Boba**
     - Base and Boba are more recent Layer-2 solutions that aim to provide high scalability, low latency, and low transaction fees while maintaining decentralization and security. Base uses a novel consensus mechanism called Proof of State, while Boba uses a variant of the Proof of Stake consensus mechanism. Both solutions aim to provide faster transaction processing times, lower fees, and greater flexibility compared to other Layer-2 solutions. However, they are still relatively new and untested compared to some of the more established Layer-2 technologies.
