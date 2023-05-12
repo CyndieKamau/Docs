@@ -2,6 +2,7 @@
 > Layer 2 is a secondary blockchain network that operates on top of the primary blockchain (Layer 1) to enhance its scalability, security, and speed. It reduces the burden on the main chain by offloading some of the transaction processing to a separate layer, thus increasing the network's overall capacity and efficiency.
 
 ## Benefits of using Layer-2 solutions
+
 * **Scalability:** Layer 2 solutions can significantly increase the scalability of blockchain networks by processing a large number of transactions off-chain. This can reduce the load on the main blockchain, leading to faster transaction processing times and increased network throughput.
 * **Cost-effectiveness:** Layer 2 solutions can reduce the cost of transactions on the blockchain by minimizing the number of transactions that need to be processed on the main chain. This can lead to lower fees for users and make the blockchain more accessible to a wider range of people.
 * **Improved user experience:** By reducing the time and cost of transactions, Layer 2 solutions can improve the overall user experience of interacting with blockchain networks. This can lead to increased adoption and usage of blockchain-based applications.
