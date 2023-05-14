@@ -440,6 +440,21 @@ Here's the breakdown;
 
 
 
+# DEPLOYING SMART CONTRACT
+
+Remember to write intro, breakdown of test smart contract; Result
+
+```
+hp@Cyndie:~/Desktop/maracontract$ npx hardhat compile
+Compiled 1 Solidity file successfully
+hp@Cyndie:~/Desktop/maracontract$ npx hardhat run --network maratestnet scripts/deploy.js
+Lock with 0.001ETH and unlock timestamp 1684107231 deployed to 0x3640dbE9b48C33b65c5000655be3184103c90648
+hp@Cyndie:~/Desktop/maracontract$ 
+```
+
+Remember to Verify smart contract on Block explorer (we'll try Etherscan) , for mara testnet not detecting the deployed contract address;
+
+![notfound](https://github.com/CyndieKamau/Docs/assets/63792575/ba103e70-9287-4f1a-b9ab-2903286a9231)
 
 
 
@@ -455,7 +470,7 @@ Here's the breakdown;
 
 
 ------------------------------------------------
-SECTION 2
+# SECTION 2
 --------------------------------------
 
 # Understanding Mara's Layer-2 Blockchain
