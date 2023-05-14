@@ -176,6 +176,30 @@ Give Hardhat a star on Github if you're enjoying it!
      https://github.com/NomicFoundation/hardhat
 ```
 
+**N.B.** For a seamless experience, it's also recommended to install the Hardhat Network Plugin, so that Hardhat can interact with other networks as well aside from its own. Which in our case, will be the `mara-testnet`.
+
+You'll use the `npm install --save-dev @nomiclabs/hardhat-ethers ethers` command to install the `hardhat-ethers` plugin.
+
+It will integrate the `Ethers.js` library, which we'll use when interacting with Ethereum-based applications.
+
+
+We'll also install `dotenv` module, which will load our private key from the `.env` file we discussed earlier on;
+
+You'll use the `npm install dotenv` command to install the module.
+
+```
+root@Cyndie:/home/hp/Desktop/maracontract# npm install dotenv
+
+added 1 package, and audited 714 packages in 13s
+....
+```
+
+And with that, we can now create the smart contract, and configure Hardhat to configure it.
+
+
+
+
+
 
 
 
