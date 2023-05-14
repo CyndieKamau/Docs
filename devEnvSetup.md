@@ -176,12 +176,15 @@ Give Hardhat a star on Github if you're enjoying it!
      https://github.com/NomicFoundation/hardhat
 ```
 
+### Hardhat Network Plugin
+
 **N.B.** For a seamless experience, it's also recommended to install the Hardhat Network Plugin, so that Hardhat can interact with other networks as well aside from its own. Which in our case, will be the `mara-testnet`.
 
 You'll use the `npm install --save-dev @nomiclabs/hardhat-ethers ethers` command to install the `hardhat-ethers` plugin.
 
 It will integrate the `Ethers.js` library, which we'll use when interacting with Ethereum-based applications.
 
+### `dotenv` module
 
 We'll also install `dotenv` module, which will load our private key from the `.env` file we discussed earlier on;
 
@@ -194,7 +197,88 @@ added 1 package, and audited 714 packages in 13s
 ....
 ```
 
-And with that, we can now create the smart contract, and configure Hardhat to configure it.
+## 3. CONFIGURING HARDHAT
+
+We'll then configure Hardhat, through the `hardhat.config.js` file, so we can specify the network we'll deploy our smart contract in.
+
+### Getting the private key
+
+We'll first go to our Metamask wallet (it should still be configured to the mara-testnet network), and click on the 3 dots on the upper right to get into **Account Details**;
+
+![accdeets](https://github.com/CyndieKamau/Docs/assets/63792575/b58f35f6-dfcd-40a2-9dff-259ee06ac5cf)
+
+We'll then be directed to our wallet details, click on the `Export Private Key` button;
+
+![exportkey](https://github.com/CyndieKamau/Docs/assets/63792575/3f7892db-71f7-4742-b0cc-001aac4f80d0)
+
+You'll then be prompted to type in your password to show your private key, remember not to share it with anyone!!!
+
+![confirm](https://github.com/CyndieKamau/Docs/assets/63792575/e91c41a9-a440-479a-8692-84574109148d)
+
+Copy the private key, then back in our workspace, you'll create a `.env` file; You'll paste the private key as follows;
+
+```
+PRIVATE_KEY="abcdef"
+```
+Save the file, and ensure its listed in the `.gitignore` file;
+
+```
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+# Hardhat files
+cache
+artifacts
+```
+
+### Configuring the `hardhat.config.js` file;
+
+So here's how our `hardhat.config.js` file will look like;
+
+```
+require("@nomicfoundation/hardhat-toolbox");
+require('dotenv').config({path: '.env'});
+
+/** @type import('hardhat/config').HardhatUserConfig */
+module.exports = {
+  defaultNetwork: "maratestnet",
+  networks: {
+    maratestnet: {
+      url: "https://mara-testnet.calderachain.xyz/http",
+      accounts: [process.env.PRIVATE_KEY],
+      chainId: 123456,
+    },
+  },
+  solidity: {
+    version: '0.8.9',
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
+  },
+};
+
+
+```
+
+Here's the breakdown;
+
+* `require("@nomicfoundation/hardhat-toolbox");` - This line imports the Hardhat toolbox plugin, which adds additional tools and functionalities to our Hardhat environment.
+
+
+* `require('dotenv').config({path: '.env'});` - This line loads our `PRIVATE_KEY` from our `.env` file.
+
+* `defaultNetwork: "maratestnet"` - It sets the default network for Hardhat to use when executing our scripts to `maratestnet`.
+
+* `networks: {...}` - This object contains the configuration for our mara testnet. It specifies the URL to connect to the `maratestnet` network, the account private key for transactions (loaded from `.env`), and the network's chain ID.
+
+* `solidity: {...}` - This object sets up the Solidity compiler. It specifies our Solidity language version, and enables an optimizer that attempts to reduce the cost of our contract by minimizing the amount of bytecode it contains.
 
 
 
