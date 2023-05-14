@@ -136,4 +136,46 @@ And with that we have installed hardhat!! We can now go to step 2.
 
 While still in the `maracontract` directory, we'll now create a new hardhat project using the `npx hardhat` command;
 
+```
+root@Cyndie:/home/hp/Desktop/maracontract# npx hardhat
+888    888                      888 888               888
+888    888                      888 888               888
+888    888                      888 888               888
+8888888888  8888b.  888d888 .d88888 88888b.   8888b.  888888
+888    888     "88b 888P"  d88" 888 888 "88b     "88b 888
+888    888 .d888888 888    888  888 888  888 .d888888 888
+888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
+888    888 "Y888888 888     "Y88888 888  888 "Y888888  "Y888
+
+Welcome to Hardhat v2.14.0
+
+✔ What do you want to do? · Create a JavaScript project
+✔ Hardhat project root: · /home/hp/Desktop/maracontract
+✔ Do you want to add a .gitignore? (Y/n) · y
+✔ Help us improve Hardhat with anonymous crash reports & basic usage data? (Y/n) · y
+✔ Do you want to install this sample project's dependencies with npm (hardhat @nomicfoundation/hardhat-toolbox)? (Y/n) · y
+
+
+npm install --save-dev hardhat@^2.14.0 @nomicfoundation/hardhat-toolbox@^2.0.0
+```
+You can decide to create a Javascript/Typescript project depending on your project, or create an empty hardhat configuration file `hardhat.config.js` with your own specifications.
+
+**N.B** It's important to include the `.gitignore` file as well, as you don't want to push some secret files we'll interact with later on, such as the `.env` file holding your private key.
+
+The `hardhat-toolbox` is also necessary so we can install all the dependencies needed at once.
+
+The message below indicates that the project was created successfully;
+
+```
+Project created
+
+See the README.md file for some example tasks you can run
+
+Give Hardhat a star on Github if you're enjoying it!
+
+     https://github.com/NomicFoundation/hardhat
+```
+
+
+
 
