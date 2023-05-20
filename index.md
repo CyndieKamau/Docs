@@ -156,7 +156,7 @@ Once its successful some GoerliETH will be transferred to your Goerli testnet ad
 
 # SETTING UP A LOCAL DEVELOPMENT ENVIRONMENT;
 
-# 1. SETTING UP HARDHAT
+# 1. SETTING UP HARDHAT 
 
 Hardhat is an Ethereum development environment, ideal for developers who aim to create smart contracts or DApps. 
 
@@ -172,6 +172,8 @@ To begin interacting with hardhat, the following need to be setup;
 `npm`
 
 To setup `nodejs` and `npm`, follow these instructions [here.](https://nodejs.org/en/download/package-manager)
+
+
 
 For successful installation, checking the node and npm version should give you this;
 
@@ -289,6 +291,39 @@ npm ERR! the command again as root/Administrator.
 ....
 ```
 And with that we have installed hardhat!! We can now go to step 2.
+
+## N.B SETTING UP HARDHAT FOR MACOS
+
+To install hardhat for macos, we'll first install `npm` and `nodejs`;
+
+* 1. Open your terminal.
+* 2. You can install Node.js and npm using Homebrew, which is a package manager for MacOS. If you don't have Homebrew installed, you can install it using the following command:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+```
+* 3. Once you have installed Homebrew, you can install Node.js and npm using the following command:
+
+```
+brew install node
+
+```
+* 4. In your project's directory you can now install hardhat;
+
+```
+npm install --save-dev hardhat
+
+```
+
+* 5. After the installation is complete, you can verify that Hardhat is installed correctly by typing:
+
+```
+npx hardhat
+
+```
+This should display the Hardhat help message, which confirms that it was installed correctly.
+
 
 ## 2. CREATING A NEW HARDHAT PROJECT
 
