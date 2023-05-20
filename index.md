@@ -442,19 +442,101 @@ Here's the breakdown;
 
 # DEPLOYING SMART CONTRACT
 
-Remember to write intro, breakdown of test smart contract; Result
+Here's the sample smart contract we deployed on the mara testnet using hardhat;
+
+```
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.9;
+
+// Uncomment this line to use console.log
+// import "hardhat/console.sol";
+
+contract Lock {
+    uint public unlockTime;
+    address payable public owner;
+
+    event Withdrawal(uint amount, uint when);
+
+    constructor(uint _unlockTime) payable {
+        require(
+            block.timestamp < _unlockTime,
+            "Unlock time should be in the future"
+        );
+
+        unlockTime = _unlockTime;
+        owner = payable(msg.sender);
+    }
+
+    function withdraw() public {
+        // Uncomment this line, and the import of "hardhat/console.sol", to print a log in your terminal
+        // console.log("Unlock time is %o and block timestamp is %o", unlockTime, block.timestamp);
+
+        require(block.timestamp >= unlockTime, "You can't withdraw yet");
+        require(msg.sender == owner, "You aren't the owner");
+
+        emit Withdrawal(address(this).balance, block.timestamp);
+
+        owner.transfer(address(this).balance);
+    }
+}
+
+```
+
+To deploy the smart contract on hardhat, we'll also write the `deploy.js` script in the `scripts` folder to give deployment instructions to hardhat;
+
+```
+// We require the Hardhat Runtime Environment explicitly here. This is optional
+// but useful for running the script in a standalone fashion through `node <script>`.
+//
+// You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
+// will compile your contracts, add the Hardhat Runtime Environment's members to the
+// global scope, and execute the script.
+const hre = require("hardhat");
+
+async function main() {
+  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
+  const unlockTime = currentTimestampInSeconds + 60;
+
+  const lockedAmount = hre.ethers.utils.parseEther("0.001");
+
+  const Lock = await hre.ethers.getContractFactory("Lock");
+  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+
+  await lock.deployed();
+
+  console.log(
+    `Lock with ${ethers.utils.formatEther(
+      lockedAmount
+    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
+  );
+}
+
+// We recommend this pattern to be able to use async/await everywhere
+// and properly handle errors.
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+``` 
+With this we'll first compile our smart contract using `npx hardhat compile`;
 
 ```
 hp@Cyndie:~/Desktop/maracontract$ npx hardhat compile
 Compiled 1 Solidity file successfully
+```
+
+After compiling successfully we can now deploy our smart contract specifically on the testnet using this command; `npx hardhat run --network maratestnet scripts/deploy.js`;
+
+```
 hp@Cyndie:~/Desktop/maracontract$ npx hardhat run --network maratestnet scripts/deploy.js
 Lock with 0.001ETH and unlock timestamp 1684107231 deployed to 0x3640dbE9b48C33b65c5000655be3184103c90648
 hp@Cyndie:~/Desktop/maracontract$ 
 ```
 
-Remember to Verify smart contract on Block explorer (we'll try Etherscan) , for mara testnet not detecting the deployed contract address;
+We'll then verify our smart contract on Mara Block explorer;
 
-![notfound](https://github.com/CyndieKamau/Docs/assets/63792575/ba103e70-9287-4f1a-b9ab-2903286a9231)
+![block](https://github.com/CyndieKamau/Docs/assets/63792575/32329c4b-83c5-4c6c-84ec-8ac817aeb932)
+
 
 
 
