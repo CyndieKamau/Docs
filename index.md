@@ -324,6 +324,25 @@ npx hardhat
 ```
 This should display the Hardhat help message, which confirms that it was installed correctly.
 
+## SETTING UP HARDHAT FOR WINDOWS
+
+* 1. Install Node.js: Hardhat requires Node.js to run. Visit the Node. js website (https://nodejs.org) and download the latest LTS (Long-Term Support) version for Windows. Run the installer and follow the on-screen instructions to complete the installation.
+
+* 2. Open a command prompt: Press the Windows key, type `cmd`, and select the Command Prompt app to open a command prompt window as administrator.
+
+* 3. Install Hardhat: In the command prompt, run the following command to install Hardhat globally:
+    ```
+    npm install -g hardhat
+    ```
+ This command will download and install Hardhat from the Node Package Manager (NPM).
+
+* 4. Verify the installation: After the installation is complete, run the following command to verify that Hardhat is installed correctly:
+    ```
+    hardhat version
+    ```
+ This command should display the version of Hardhat installed on your system.
+
+    
 
 ## 2. CREATING A NEW HARDHAT PROJECT
 
@@ -368,6 +387,19 @@ Give Hardhat a star on Github if you're enjoying it!
 
      https://github.com/NomicFoundation/hardhat
 ```
+
+## N.B Set up a new Hardhat project on Windows; 
+
+* 1. Create a new directory for your Hardhat project. 
+
+* 2. In the command prompt, navigate to the directory you just created. Run the following command to initialize a new Hardhat project:
+
+    ```
+    npx hardhat init
+    ```
+    
+ This command will set up the basic structure and configuration files for your Hardhat project.
+
 
 ### Hardhat Network Plugin
 
