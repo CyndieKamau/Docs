@@ -968,7 +968,7 @@ So on our Remix IDE, we'll first compile our Smart Contract;
 
 ![compilesc](https://github.com/CyndieKamau/Docs/assets/63792575/673d30d0-993d-4a75-ad94-f37d77941aff)
 
-You'll click on the ` Compile BridgeBase.sol` button to compile the smart contract. When it's compiled successfully a green tick appears on the left-hand side of the Solidity Compiler as shown.
+You'll click on the `Compile BridgeBase.sol` button to compile the smart contract. When it's compiled successfully a green tick appears on the left-hand side of the Solidity Compiler as shown.
 
 Once it compiles successfully we'll then deploy our smart contract using the `deploy_with_ethers.ts` script;
 
