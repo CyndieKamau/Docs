@@ -823,7 +823,111 @@ Here's a high-level overview of how the process usually works:
 * **Unlocking the Assets:** If the user wants to move back their assets to Ethereum, the reverse process is followed. The tokens on the Layer 2 are burned/locked, an event is emitted, the Ethereum bridge contract recognizes this event, and then unlocks the equivalent amount of assets on the Ethereum chain.
 
 
-We'll now look at the `Bridge contract` deployed on Ethereum, and the `Transfer` contract deloyed on the Mara blockchain;
+We'll now look a simplified token bridge contract deployed on Ethereum, and the `Transfer` contract deloyed on the Mara blockchain;
+
+## 1. `Bridge Contract` on Ethereum;
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.7;
+
+contract BridgeBase {
+    address public admin;
+    mapping(address => uint) public amounts;
+
+    event Transfer(
+        address indexed from,
+        uint amount,
+        address to,
+        uint date
+    );
+
+    constructor(address _admin) {
+        admin = _admin;
+    }
+
+    function bridgeTokens(address to, uint amount) external {
+        amounts[msg.sender] -= amount;
+        emit Transfer(msg.sender, amount, to, block.timestamp);
+    }
+
+    function lockTokens(uint amount) external {
+        amounts[msg.sender] += amount;
+    }
+}
+
+```
+
+
+This `BridgeBase` contract includes several key features and functions:
+
+* **admin:** This is a public address variable that stores the address of the admin of this contract. 
+The admin role could have special permissions, although in this specific code, the role isn't used for anything.
+
+* **amounts:** This is a mapping that associates addresses with unsigned integer amounts. 
+ 
+In the context of this bridge contract, it could be seen as a record of how many tokens each address has locked in the bridge.
+
+* **Transfer event:** Events in Solidity allow the convenient usage of the EVM logging facilities, which in turn can be used to “call” JavaScript callbacks in the user interface of a dapp, which listen for these events. 
+
+In this case, Transfer event is emitted when a successful bridge of tokens is made.
+
+* **constructor:** The constructor is a special function that is executed during the creation of the contract and cannot be called afterwards. It is used to set the contract admin in this case.
+
+* **bridgeTokens:** This function is used to move tokens to the bridge. It subtracts the bridged amount from the sender's balance (in the amounts mapping), and emits a Transfer event with details of the operation.
+
+* **lockTokens:** This function is used to lock tokens in the bridge. It adds the locked amount to the sender's balance (in the amounts mapping).
+
+We'll also include the `deploy.js` script for deploying our smart contract on Remix IDE;
+
+```
+// This script can be used to deploy the "Storage" contract using ethers.js library.
+// Please make sure to compile "./contracts/1_Storage.sol" file before running this script.
+// And use Right click -> "Run" from context menu of the file to run the script. Shortcut: Ctrl+Shift+S
+
+import { deploy } from './ethers-lib'
+
+(async () => {
+    try {
+        const result = await deploy('BridgeBase', [])
+        console.log(`address: ${result.address}`)
+    } catch (e) {
+        console.log(e.message)
+    }
+  })()
+```
+
+So on our Remix IDE, we'll first compile our Smart Contract;
+
+![compilesc](https://github.com/CyndieKamau/Docs/assets/63792575/673d30d0-993d-4a75-ad94-f37d77941aff)
+
+You'll click on the ` Compile BridgeBase.sol` button to compile the smart contract. When it's compiled successfully a green tick appears on the left-hand side of the Solidity Compiler as shown.
+
+Once it compiles successfully we'll then deploy our smart contract using the `deploy_with_ethers.ts` script;
+
+![deployjs](https://github.com/CyndieKamau/Docs/assets/63792575/12c0c6fd-fb58-4c37-b45b-bc50060e6df2)
+
+We can now deploy our smart contract. On the Ethereum icon we'll now setup our environment;
+
+![options](https://github.com/CyndieKamau/Docs/assets/63792575/70b7c447-9f35-48cd-a8c4-e53561a12c81)
+
+For the environment we'll choose the Remix VM (Virtual Machine) forked to the Ethereum Goerli testnet, to avoid gas fees.
+
+The account address will update itself automatically since we are using the Remix VM.
+
+Just like how the smallest unit of the dollar is the cent, and the smallest unit of bitcoin is the satoshi, the smallest unit of ether is the wei.
+
+At the Address bar next to the Deploy button we'll then add our metamask wallet address connected to the Goerli testnet, to provide the parameter for deploying our smart contract.
+
+![deploygoerli](https://github.com/CyndieKamau/Docs/assets/63792575/2c0a78b6-c645-40f3-a68f-bb0502731290)
+
+It deploys successfully!! You can see the details below;
+
+![hash](https://github.com/CyndieKamau/Docs/assets/63792575/661cedea-9128-49d9-aa02-20064b60f89f)
+
+
+
+
 
 
 
