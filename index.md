@@ -1033,6 +1033,16 @@ You can see the transaction details below;
 
 These contracts will now work together to facilitate the transfer of assets between the two networks.
 
+The smart contract on the Ethereum network will hold assets that are to be transferred to the Layer 2 protocol, which is Mara.
+
+It will listen for transactions that signal a user's intention to move their assets to Mara.
+
+The corresponding smart contract on the MARA network is capable of minting (creating) and burning (destroying) tokens. 
+
+It listens for events from the Ethereum network (through a bridge, oracle or similar mechanism) and mints the appropriate amount of tokens whenever it receives a signal that assets have been locked on the Ethereum network. 
+
+It does the reverse (burns tokens and signals for the Ethereum contract to unlock assets) when assets are moved back to the Ethereum network.
+
 
 
 
