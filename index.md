@@ -926,6 +926,113 @@ It deploys successfully!! You can see the details below;
 
 ![hash](https://github.com/CyndieKamau/Docs/assets/63792575/661cedea-9128-49d9-aa02-20064b60f89f)
 
+We can now deploy deploy the `Transfer` smart contract on Mara;
+
+## 2. `Transfer` contract on Mara;
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.7;
+
+contract BridgeMara {
+    address public admin;
+    mapping(address => uint) public balances;
+
+    event Mint(
+        address indexed to,
+        uint amount,
+        uint date
+    );
+
+    constructor(address _admin) {
+        admin = _admin;
+    }
+
+    // This function would be called when the `Transfer` event is detected on Ethereum
+    function mintTokens(address to, uint amount) external {
+        require(msg.sender == admin, "Only admin");
+        balances[to] += amount;
+        emit Mint(to, amount, block.timestamp);
+    }
+
+    // This is a simplified token transfer function within the Layer 2
+    function transfer(address to, uint amount) external {
+        require(balances[msg.sender] >= amount, "Not enough tokens");
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
+    }
+}
+```
+
+This smart contract deployed on the Mara network will serve as the bridge's counterpart on that network. Let's break it down:
+
+* ### **Variables and Constructor**
+
+```
+address public admin;
+mapping(address => uint) public balances;
+
+constructor(address _admin) {
+    admin = _admin;
+}
+
+```
+The contract declares two state variables: `admin`, which stores the address of the contract administrator, and `balances`, which is a mapping that tracks the balance of each address in this bridged asset. 
+
+The constructor initializes the `admin` variable to the address passed as a parameter.
+
+* ### **Mint Function**
+
+```
+event Mint(
+    address indexed to,
+    uint amount,
+    uint date
+);
+
+function mintTokens(address to, uint amount) external {
+    require(msg.sender == admin, "Only admin");
+    balances[to] += amount;
+    emit Mint(to, amount, block.timestamp);
+}
+
+```
+The `mintTokens` function is what would be called when a `Transfer` event is detected on the Ethereum network. 
+
+It mints new tokens on the Mara network to keep the total supply consistent across both networks. The `Mint` event is emitted each time new tokens are minted. 
+
+It's important to note that only the contract's `admin` is allowed to call this function. 
+
+This would typically be an address controlled by a trusted entity or a decentralized protocol that listens for `Transfer` events on the Ethereum network and calls `mintTokens` accordingly.
+
+* ### **Transfer Function**
+
+```
+function transfer(address to, uint amount) external {
+    require(balances[msg.sender] >= amount, "Not enough tokens");
+    balances[msg.sender] -= amount;
+    balances[to] += amount;
+}
+
+```
+
+This `transfer` function allows users on the Mara network to transfer the bridged tokens among themselves. 
+
+Before the transfer takes place, the function checks that the sender has enough tokens. 
+
+If this check passes, the function subtracts the amount from the sender's balance and adds it to the recipient's balance.
+
+We'll then follow the same procedure as the Ethereum smart contract. 
+
+![maradeploy](https://github.com/CyndieKamau/Docs/assets/63792575/b756dcf6-1310-4d15-8b0a-05f9be629f0c)
+
+You can see the transaction details below;
+
+![deetshash](https://github.com/CyndieKamau/Docs/assets/63792575/fdf60e71-9907-4939-b8bc-3232919bc0d1)
+
+
+These contracts will now work together to facilitate the transfer of assets between the two networks.
+
 
 
 
