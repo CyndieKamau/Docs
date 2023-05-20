@@ -905,7 +905,8 @@ You'll click on the ` Compile BridgeBase.sol` button to compile the smart contra
 
 Once it compiles successfully we'll then deploy our smart contract using the `deploy_with_ethers.ts` script;
 
-![deployjs](https://github.com/CyndieKamau/Docs/assets/63792575/12c0c6fd-fb58-4c37-b45b-bc50060e6df2)
+![deployethers](https://github.com/CyndieKamau/Docs/assets/63792575/baa168e6-cf7c-4495-b1de-f46cca66451f)
+
 
 We can now deploy our smart contract. On the Ethereum icon we'll now setup our environment;
 
