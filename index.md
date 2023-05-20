@@ -541,9 +541,155 @@ We'll then verify our smart contract on Mara Block explorer;
 
 
 
-
-
 -----------------------------------------------
+
+
+# BUILDING DAPPS ON MARA;
+
+# Front-end integration with Mara
+
+When it comes to developing decentralized applications (dApps) that interact seamlessly with Ethereum-based smart contracts, understanding the vital role played by certain JavaScript libraries becomes crucial.
+
+Among these libraries, two stand out as being particularly important: `ethers.js` and `web3.js`.
+
+These libraries act as a bridge, facilitating smooth communication and integration between our frontend application and the blockchain network where our smart contracts reside. 
+
+They offer a collection of robust tools and functionalities that enable developers to write code that can query, inspect, and transact with smart contracts, thereby underpinning the operation of dApps.
+
+For this tutorial we will have a look at `ethers.js`;
+
+# `ethers.js`;
+
+`ethers.js`is a comprehensive library for interacting with the Ethereum blockchain, and it is vital for building Ethereum dApps (decentralized applications). 
+
+When you import ethers via `import { ethers } from 'ethers';`, you are equipping your application with a suite of utilities that will enable you to accomplish a number of important tasks, including but not limited to:
+
+* **Interacting with Smart Contracts:** ethers.js provides an easy-to-use interface to call functions of your smart contracts, send transactions, and query contract states.
+
+* **Connecting to Ethereum Nodes:** ethers.js enables you to connect to Ethereum nodes (such as Infura, Alchemy, or your own local node) using a provider object. This lets you query the blockchain's state, send transactions, and subscribe to blockchain events.
+
+* **Key Management and Wallet Functionality:** ethers.js provides classes for managing Ethereum accounts, signing transactions and messages, and encrypting/decrypting wallets.
+
+* **Parsing and Formatting Transactions:** ethers.js includes functions to parse and format Ethereum transactions and logs, making it easier to interact with blockchain data.
+
+* **Big Number and Fixed Number Operations:** Working with large numbers and fixed point numbers in JavaScript can be tricky. ethers.js provides classes for safely handling these types of values, which is very important when dealing with cryptocurrency values.
+
+
+
+## 1. INSTALLATION
+
+We'll install `ethers.js` library in our frontend directory;
+
+```
+root@Cyndie:/home/hp/Desktop/maracontract/frontend# npm install --save ethers
+up to date, audited 714 packages in 4s
+
+125 packages are looking for funding
+  run `npm fund` for details
+```
+
+After installation its now ready to use.
+
+## 2. IMPORTING `ethers`;
+
+In your react `index.js` file, you can import `ethers`;
+
+```
+import { ethers } from 'ethers';
+
+```
+
+## 3. CONNECTING TO `mara-testnet` via RPC;
+
+[JSON RPC API](https://github.com/ethereum/wiki/wiki/JSON-RPC) is a light-weight, easy-to-use protocol that allows for data exchange between our application and the Ethereum network. 
+
+`ethers.js` leverages JSON-RPC to facilitate these exchanges, allowing our dApp to seamlessly send requests and retrieve responses from the blockchain, thereby enabling a multitude of operations including querying the network state, reading data from smart contracts, and submitting transactions. 
+
+Since the Mara blockchain is EVM (Ethereum Virtual Machine) compatible,   we will implement the `JsonRpcProvider` function from `ethers.js`, instead of `Web3Provider`, which is used on the Ethereum network.
+
+It will provide connection to the `mara-testnet` provider, and it will hold the user's private key for signing transactions.
+
+Here's a React code snippet for initializing the connection to the Mara blockchain on our frontend, in your `App.jsx` file;
+
+```
+import { ethers } from 'ethers';
+import React, { useEffect, useState } from 'react';
+import ContractArtifact from '../artifacts/contracts/Lock.sol/Lock.json'; // path to our contract's ABI JSON file
+
+function App() {
+    const [provider, setProvider] = useState(null);
+    const [signer, setSigner] = useState(null);
+    const [contract, setContract] = useState(null);
+
+    // The network url for Mara testnet 
+    const maraTestnetUrl = "https://mara-testnet.calderachain.xyz/http";
+    
+    // Our deployed contract address
+    const contractAddress = '0x3640dbE9b48C33b65c5000655be3184103c90648'; 
+
+    useEffect(() => {
+        if (maraTestnetUrl) {
+            const provider = new ethers.providers.JsonRpcProvider(maraTestnetUrl);
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(contractAddress, ContractArtifact.abi, signer);
+            setProvider(provider);
+            setSigner(signer);
+            setContract(contract);
+        } else {
+            console.log('Network url is not available');
+        }
+    }, []);
+
+    return (
+        <div className="App">
+            {/* Your app logic goes here */}
+        </div>
+    );
+}
+
+export default App;
+
+```
+
+This script is used to connect to a deployed smart contract on a specified blockchain network, using the ethers.js library and React. Here's the breakdown:
+
+### 1. Imports
+The first couple of lines are the necessary import statements.
+
+* **import { ethers } from 'ethers';** brings in the ethers.js library, which provides a collection of utility functions to help interact with Ethereum.
+
+* **import React, { useEffect, useState } from 'react';** imports necessary elements from React. useEffect and useState are hooks that enable React state and lifecycle features in functional components.
+
+* **import ContractArtifact from '../artifacts/contracts/Lock.sol/Lock.json';** imports the ABI (Application Binary Interface) of your contract. The ABI is an interface used to interact with the contract, which is generated when the contract is compiled. The path is relative and should lead to your contract's JSON artifact file.
+
+### 2. React Functional Component
+This block of code defines a functional component App in React.
+
+* **const [provider, setProvider] = useState(null);** initializes a state variable for provider with its setter function. The provider is used to interact with the Ethereum blockchain.
+
+* **const [signer, setSigner] = useState(null);** initializes a state variable for the signer with its setter function. The signer is derived from the provider and is used to issue transactions.
+
+* **const [contract, setContract] = useState(null);** initializes a state variable for the contract with its setter function. This will hold our contract instance.
+
+* **const maraTestnetUrl = "https://mara-testnet.calderachain.xyz/http";** is the URL for the Mara Testnet RPC node.
+
+* **const contractAddress = '0x3640dbE9b48C33b65c5000655be3184103c90648';** is the address at which your smart contract is deployed.
+
+### 3.useEffect Hook
+It invokes the callback function when the component mounts. Here, it is used to create a connection to the blockchain network and the smart contract.
+
+* **const provider = new ethers.providers.JsonRpcProvider(maraTestnetUrl);** creates a new provider instance, using the Mara Testnet URL.
+
+* **const signer = provider.getSigner();** gets a signer instance from the provider. This signer can be used to sign transactions.
+
+* **const contract = new ethers.Contract(contractAddress, ContractArtifact.abi, signer);** creates a contract instance which we can interact with.
+
+* **setProvider(provider); setSigner(signer); setContract(contract);** sets the state variables to our newly created instances.
+
+### 4.React Component Return: 
+This is where you define what your component will render. 
+
+Currently, it's just rendering a div containing the text "Your app logic goes here", but this is where you would put your JSX and other components for your app's UI.
 
 
 
@@ -552,34 +698,81 @@ We'll then verify our smart contract on Mara Block explorer;
 
 
 ------------------------------------------------
-# SECTION 2
+# Understanding Mara's Layer-2 Blockchain 
 --------------------------------------
 
-# Understanding Mara's Layer-2 Blockchain
-> Layer 2 is a secondary blockchain network that operates on top of the primary blockchain (Layer 1) to enhance its scalability, security, and speed. It reduces the burden on the main chain by offloading some of the transaction processing to a separate layer, thus increasing the network's overall capacity and efficiency.
+
+Layer 2 is a secondary blockchain network that operates on top of the primary blockchain (Layer 1) to enhance its scalability, security, and speed. 
+
+It reduces the burden on the main chain by offloading some of the transaction processing to a separate layer, thus increasing the network's overall capacity and efficiency.
+
+
 
 ## Benefits of using Layer-2 solutions
 
-* **Scalability:** Layer 2 solutions can significantly increase the scalability of blockchain networks by processing a large number of transactions off-chain. This can reduce the load on the main blockchain, leading to faster transaction processing times and increased network throughput.
-* **Cost-effectiveness:** Layer 2 solutions can reduce the cost of transactions on the blockchain by minimizing the number of transactions that need to be processed on the main chain. This can lead to lower fees for users and make the blockchain more accessible to a wider range of people.
-* **Improved user experience:** By reducing the time and cost of transactions, Layer 2 solutions can improve the overall user experience of interacting with blockchain networks. This can lead to increased adoption and usage of blockchain-based applications.
-* **Increased security:** Layer 2 solutions can enhance the security of blockchain networks by reducing the number of transactions that are processed on the main chain, thus reducing the risk of network congestion and potential attacks. Additionally, Layer 2 solutions can implement additional security measures, such as multi-party computation and zero-knowledge proofs.
-* **Flexibility:** Layer 2 solutions can provide greater flexibility to blockchain networks, allowing them to support a wider range of use cases and applications. This can lead to greater innovation and development within the blockchain ecosystem.
+Layer-2 solutions are like add-ons to the main blockchain - think of them as extra lanes on a busy highway. Here are their benefits simplified:
+
+* **More Room, More Speed:** By handling many transactions away from the main blockchain (off-chain), these solutions increase the network's capacity, speeding up transaction times. 
+
+It's like opening up more cash registers in a busy supermarket - customers get served quicker!
+
+* **Pocket-Friendly:** By minimizing the transactions on the main chain, Layer-2 solutions lower the transaction costs. 
+
+That's good news for users as it's like getting a discount on the transaction fee!
+
+* **Better User Experience:** Cheaper, faster transactions mean happier users. 
+
+Layer-2 solutions improve the overall feel of using blockchain networks, enticing more people to use blockchain-based applications.
+
+* **Enhanced Security:** These solutions also improve security. 
+
+They do this by reducing the load on the main chain, thus lowering the risk of network congestion and potential attacks.
+
+It's like having fewer cars on the road, reducing the risk of traffic jams and accidents.
+
+Some even add extra security features like zero-knowledge proofs.
+
+* **Flexibility:** Layer-2 solutions add flexibility to the blockchain.
+
+They allow it to support a wider range of applications and uses. 
+
+It's like having a multi-tool - you can do so much more!
+
 
 ## Comparison with other Layer-2 technologies
 
-> There are various Layer-2 technologies available in the market, including state channels, sidechains, plasma, rollups, and more recently, Base and Boba. Here's how Base and Boba compare to some of the other Layer-2 technologies:
+Layer-2 technologies are like different brands of cars, each with its own features and quirks. Let's look at a few key players - state channels, sidechains, plasma, rollups, and newcomers Base and Boba - and break them down into simple terms:
 
-1. **State Channels** 
-     - State channels are off-chain channels between two parties that enable them to conduct multiple transactions without requiring the main blockchain's intervention. They are best suited for high-frequency, low-value transactions, such as micropayments. While state channels provide instant settlement and low fees, they are limited to only two parties, making them less suitable for applications that require multiple parties.
-2. **Sidechains** 
-    -  Sidechains are independent blockchains that are interoperable with the main blockchain. They allow developers to experiment with new features and functionalities without affecting the main chain's security and performance. However, sidechains are still susceptible to security risks, and transferring assets between sidechains and the main chain can be complex and slow.
+### State Channels
 
-3. **Plasma** 
-    - Plasma is a Layer-2 scaling solution that enables the creation of child chains, each with their own set of rules and security measures. Plasma is best suited for applications that require complex computations or large amounts of data. However, the setup process for Plasma can be complex, and the child chains may not have the same level of security and decentralization as the main chain.
+Picture state channels as private conversations between two people. They allow multiple exchanges without needing to check in with the main group (blockchain). It's quick and cheap, but it's just for two. So, it's not the best fit for applications needing more participants.
 
-4. **Rollups** 
-    - Rollups are Layer-2 solutions that batch transactions off-chain and then submit a single transaction to the main chain. Rollups are best suited for applications that require high scalability and low transaction fees. However, rollups can have longer settlement times than other Layer-2 solutions, and there may be a tradeoff between scalability and decentralization.
+### Sidechains
 
-5. **Base and Boba**
-    - Base and Boba are more recent Layer-2 solutions that aim to provide high scalability, low latency, and low transaction fees while maintaining decentralization and security. Base uses a novel consensus mechanism called Proof of State, while Boba uses a variant of the Proof of Stake consensus mechanism. Both solutions aim to provide faster transaction processing times, lower fees, and greater flexibility compared to other Layer-2 solutions. However, they are still relatively new and untested compared to some of the more established Layer-2 technologies.
+Sidechains are like siblings to the main blockchain. They play nicely together, allowing devs to try out new things without disturbing the main chain. 
+
+But like all siblings, they have their squabbles: they can be a bit risky security-wise, and transferring things between them and the main chain can be a bit slow and complicated.
+
+### Plasma
+
+Imagine Plasma as a family tree, creating child chains with their own rules and security. It's great for applications needing complex computations or lots of data. 
+
+However, setting up this family tree can be complex, and the children may not be as secure and decentralized as the main chain.
+
+### Rollups
+
+Rollups are like express checkout lanes in a supermarket: they bundle transactions off-chain and then submit a single receipt to the main chain. 
+
+Perfect for applications needing high scalability and low transaction fees. However, they may take longer to settle than other Layer-2 solutions, and there's a balance to strike between scalability and decentralization.
+
+### Base and Boba
+
+Base and Boba are the new kids on the block. They promise high scalability, speed, low transaction fees while maintaining decentralization and security.
+
+Think of them as the latest high-tech cars - faster, more efficient, and packed with features. 
+
+But keep in mind, they're still new and unproven compared to the other, more established brands.
+
+And there you have it - a simple breakdown of some of the Layer-2 technologies!
+
+
