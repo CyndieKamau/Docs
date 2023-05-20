@@ -296,27 +296,27 @@ And with that we have installed hardhat!! We can now go to step 2.
 
 To install hardhat for macos, we'll first install `npm` and `nodejs`;
 
-* 1. Open your terminal.
-* 2. You can install Node.js and npm using Homebrew, which is a package manager for MacOS. If you don't have Homebrew installed, you can install it using the following command:
+* Open your terminal.
+* You can install Node.js and npm using Homebrew, which is a package manager for MacOS. If you don't have Homebrew installed, you can install it using the following command:
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 ```
-* 3. Once you have installed Homebrew, you can install Node.js and npm using the following command:
+* Once you have installed Homebrew, you can install Node.js and npm using the following command:
 
 ```
 brew install node
 
 ```
-* 4. In your project's directory you can now install hardhat;
+* In your project's directory you can now install hardhat;
 
 ```
 npm install --save-dev hardhat
 
 ```
 
-* 5. After the installation is complete, you can verify that Hardhat is installed correctly by typing:
+* After the installation is complete, you can verify that Hardhat is installed correctly by typing:
 
 ```
 npx hardhat
@@ -326,17 +326,17 @@ This should display the Hardhat help message, which confirms that it was install
 
 ## SETTING UP HARDHAT FOR WINDOWS
 
-* 1. Install Node.js: Hardhat requires Node.js to run. Visit the Node. js website (https://nodejs.org) and download the latest LTS (Long-Term Support) version for Windows. Run the installer and follow the on-screen instructions to complete the installation.
+* Install Node.js: Hardhat requires Node.js to run. Visit the Node. js website (https://nodejs.org) and download the latest LTS (Long-Term Support) version for Windows. Run the installer and follow the on-screen instructions to complete the installation.
 
-* 2. Open a command prompt: Press the Windows key, type `cmd`, and select the Command Prompt app to open a command prompt window as administrator.
+* Open a command prompt: Press the Windows key, type `cmd`, and select the Command Prompt app to open a command prompt window as administrator.
 
-* 3. Install Hardhat: In the command prompt, run the following command to install Hardhat globally:
+* Install Hardhat: In the command prompt, run the following command to install Hardhat globally:
     ```
     npm install -g hardhat
     ```
  This command will download and install Hardhat from the Node Package Manager (NPM).
 
-* 4. Verify the installation: After the installation is complete, run the following command to verify that Hardhat is installed correctly:
+* Verify the installation: After the installation is complete, run the following command to verify that Hardhat is installed correctly:
     ```
     hardhat version
     ```
@@ -390,9 +390,9 @@ Give Hardhat a star on Github if you're enjoying it!
 
 ## N.B Set up a new Hardhat project on Windows; 
 
-* 1. Create a new directory for your Hardhat project. 
+* Create a new directory for your Hardhat project. 
 
-* 2. In the command prompt, navigate to the directory you just created. Run the following command to initialize a new Hardhat project:
+* In the command prompt, navigate to the directory you just created. Run the following command to initialize a new Hardhat project:
 
     ```
     npx hardhat init
